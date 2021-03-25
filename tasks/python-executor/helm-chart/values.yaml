@@ -1,0 +1,5 @@
+workflow:
+  param:
+    name: script
+    value: env
+  templateName: shell-executor-template

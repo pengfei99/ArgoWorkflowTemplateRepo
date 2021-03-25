@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: python-executor-template
+spec:
+  entrypoint: main
+  arguments:
+    parameters:
+      - name: code-file-name
+        value: src/data_info/CheckShape.py
+
+      - name: git-repo-url
+        value: https://github.com/pengfei99/argoDataPipeline.git
+      - name: s3-endpoint-url
+        value: minio.lab.sspcloud.fr
+      - name: s3-bucket-name
+        value: argo-artifacts
+      - name: s3-data-path
+        value: data-pipeline/demo/input
+      - name: s3-data-file-name
+        value: pokemon-bad.csv
+  templates:
+    - name: main
+      inputs:
+        artifacts:
+          # Check out the master branch of the argo repo and place it at /src
+          # revision can be anything that git checkout accepts: branch, commit, tag, etc.
+          - name: code
+            path: /mnt/bin
+            git:
+              repo: "{{workflow.parameters.git-repo-url}}"
+              revision: "main"
+          - name: input-data
+            path: /mnt/input
+            s3:
+              endpoint: "{{workflow.parameters.s3-endpoint-url}}"
+              bucket: "{{workflow.parameters.s3-bucket-name}}"
+              key: "{{workflow.parameters.s3-data-path}}"
+              accessKeySecret:
+                name: prod-minio-cred
+                key: accessKey
+              secretKeySecret:
+                name: prod-minio-cred
+                key: secretKey
+      container:
+        image: liupengfei99/python38-ds
+        command: [sh, -c]
+        args: ["python /mnt/bin/{{workflow.parameters.code-file-name}}
+               /mnt/input/{{workflow.parameters.s3-data-file-name}}"]
+        imagePullPolicy: IfNotPresent

@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: call-python-executor-
+spec:
+  entrypoint: main
+  arguments:
+    parameters:
+      - name: code-file-name
+        value: src/data_info/CheckShape.py
+      - name: git-repo-url
+        value: https://github.com/pengfei99/argoDataPipeline.git
+      - name: s3-endpoint-url
+        value: minio.lab.sspcloud.fr
+      - name: s3-bucket-name
+        value: argo-artifacts
+      - name: s3-data-path
+        value: data-pipeline/demo/input
+      - name: s3-data-file-name
+        value: pokemon-bad.csv
+  workflowTemplateRef:
+    name: python-executor-template
