@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: call-python-executor-{{ .Release.Name }}
+spec:
+  entrypoint: main
+  arguments:
+    parameters:
+      - name: code-file-name
+        value: {{.Values.workflow.param.code-file-name}}
+      - name: git-repo-url
+        value: {{.Values.workflow.param.git-repo-url}}
+      - name: s3-endpoint-url
+        value: {{.Values.workflow.param.s3-endpoint-url}}
+      - name: s3-bucket-name
+        value: {{.Values.workflow.param.s3-bucket-name}}
+      - name: s3-data-path
+        value: {{.Values.workflow.param.s3-data-path}}
+      - name: s3-data-file-name
+        value: {{.Values.workflow.param.s3-data-file-name}}
+  workflowTemplateRef:
+    name: python-executor-template

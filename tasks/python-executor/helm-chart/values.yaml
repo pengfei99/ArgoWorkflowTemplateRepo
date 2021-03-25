@@ -1,5 +1,8 @@
 workflow:
   param:
-    name: script
-    value: env
-  templateName: shell-executor-template
+    code-file-name: src/data_info/CheckShape.py
+    git-repo-url: https://github.com/pengfei99/argoDataPipeline.git
+    s3-endpoint-url: minio.lab.sspcloud.fr
+    s3-bucket-name: argo-artifacts
+    s3-data-path: data-pipeline/demo/input
+    s3-data-file-name: pokemon-bad.csv
