@@ -2,11 +2,10 @@ apiVersion: v2
 name: workflow-python-executor
 description: "A helm chart to submit python jobs to argo workflow"
 type: application
-version: 0.1.0
+version: 0.1.1
 appVersion: 2.12.9
 keywords:
-  - argo-workflow
-  - run-job
+  - run-python-job
 home: https://github.com/
 sources:
   - https://github.com/

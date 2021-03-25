@@ -1,8 +1,8 @@
 workflow:
   param:
-    codeFileNname: src/data_info/CheckShape.py
-    gitRepoUrl: https://github.com/pengfei99/argoDataPipeline.git
-    s3EndpointUrl: minio.lab.sspcloud.fr
-    s3BucketName: argo-artifacts
-    s3DataPath: data-pipeline/demo/input
-    s3DataFileName: pokemon-bad.csv
+    codeFileNname: "src/data_info/CheckShape.py"
+    gitRepoUrl: "https://github.com/pengfei99/argoDataPipeline.git"
+    s3EndpointUrl: "minio.lab.sspcloud.fr"
+    s3BucketName: "argo-artifacts"
+    s3DataPath: "data-pipeline/demo/input"
+    s3DataFileName: "pokemon-bad.csv"
