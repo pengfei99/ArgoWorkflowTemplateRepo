@@ -7,16 +7,16 @@ spec:
   arguments:
     parameters:
       - name: code-file-name
-        value: {{.Values.workflow1.param.codeFileName}}
+        value: {{.Values.pythonExecutor.param.codeFileName}}
       - name: git-repo-url
-        value: {{.Values.workflow1.param.gitRepoUrl}}
+        value: {{.Values.pythonExecutor.param.gitRepoUrl}}
       - name: s3-endpoint-url
-        value: {{.Values.workflow1.param.s3EndpointUrl}}
+        value: {{.Values.pythonExecutor.param.s3EndpointUrl}}
       - name: s3-bucket-name
-        value: {{.Values.workflow1.param.s3BucketName}}
+        value: {{.Values.pythonExecutor.param.s3BucketName}}
       - name: s3-data-path
-        value: {{.Values.workflow1.param.s3DataPath}}
+        value: {{.Values.pythonExecutor.param.s3DataPath}}
       - name: s3-data-file-name
-        value: {{.Values.workflow1.param.s3DataFileName}}
+        value: {{.Values.pythonExecutor.param.s3DataFileName}}
   workflowTemplateRef:
     name: python-executor-template
