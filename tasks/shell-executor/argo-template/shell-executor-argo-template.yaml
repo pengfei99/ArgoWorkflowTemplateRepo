@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: shell-executor-template
+spec:
+  entrypoint: main
+  arguments:
+    parameters:
+      - name: script
+        value: echo $PATH
+  templates:
+    - name: main
+      container:
+        image: debian
+        command: [sh, -c]
+        args: ["{{workflow.parameters.script}}"]
+        imagePullPolicy: IfNotPresent
