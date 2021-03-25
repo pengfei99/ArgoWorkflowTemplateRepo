@@ -1,4 +1,4 @@
-workflow:
+workflow1:
   param:
     codeFileNname: "src/data_info/CheckShape.py"
     gitRepoUrl: "https://github.com/pengfei99/argoDataPipeline.git"
